@@ -108,6 +108,43 @@ describe('caesar app', () => {
   })
 
 
+  it('show hide comment', () => {
+    //open lightbox
+    cy.dataCy('lightbox').click()
+
+    cy.dataCy('lightbox-2').scrollTo('bottom')
+
+    //add comment
+    cy.dataCy('texte-comment')
+      .type('Coucou mec').should('have.value', 'Coucou mec')
+
+    //clique bouton add
+    cy.dataCy('button-comment').click()
+
+    //regarde contenu commentaire
+    cy.dataCy('comment-body')
+      .should('contain', 'Coucou mec')
+
+    //regarde auteur commentaire
+    cy.dataCy('author-comment')
+      .should('contain', 'johndoe')
+
+    cy.dataCy('texte-comment')
+      .type('Ca va ?').should('have.value', 'Ca va ?')
+
+    //clique bouton add
+    cy.dataCy('button-comment').click()
+
+    cy.dataCy('show-hide-comment').click()
+
+    cy.dataCy('show-hide-comment').click()
+
+    
+
+  })
+
+
+
   it('delete comment', () => {
     //open lightbox
     cy.dataCy('lightbox').click()
