@@ -44,19 +44,38 @@ it('like image', () =>{
     cy.dataCy('nombre-like-hover')
     .should('contain', '1')
 
-    /*
-       .type('1').should('have.value', '1')
 
-       cy.get('[data-cy=texte]')
-       .type('test').should('have.value', 'test')
-
-       cy.get('[data-cy=button-cypher]').click()
-       cy.get('[data-cy=resultat]')
-       .should('contain', 'uftu')
-       */
 })
 
+it('dislike image', () =>{
+   //open lightbox
+   cy.dataCy('lightbox').click()
 
+   cy.dataCy('lightbox-2').scrollTo('bottom')
+
+   //add like
+   cy.dataCy('bouton-like').click()
+
+   
+   //compteur like
+   cy.dataCy('nombre-like')
+   .should('contain', '1')
+
+   //delete like
+   cy.dataCy('bouton-dislike').click()
+
+   //compteur like
+   cy.dataCy('nombre-like')
+   .should('contain', '0')
+
+   cy.dataCy('background-lightbox').click(0,0);
+
+    cy.dataCy('lightbox').trigger('mouseover');
+
+    cy.dataCy('nombre-like-hover')
+    .should('contain', '0')
+
+})
 
 
 });
