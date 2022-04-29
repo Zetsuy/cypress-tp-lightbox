@@ -77,6 +77,19 @@ describe('caesar app', () => {
 
   })
 
+
+  it('button disabled if no comment', () => {
+    //open lightbox
+    cy.dataCy('lightbox').click()
+
+    cy.dataCy('lightbox-2').scrollTo('bottom')
+
+    //add like
+    cy.dataCy('button-comment').should('be.disabled')
+
+  })
+
+
   it('add comment', () => {
     //open lightbox
     cy.dataCy('lightbox').click()
